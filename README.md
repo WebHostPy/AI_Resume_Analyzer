@@ -35,7 +35,7 @@ and excellent performance through selective state subscriptions.
 1. Easy e convenient auth: Handle authentication entirely in the browser
 using Puterjs–no backend or setup required.
 
-2.Resume upload e storage: Let users upload and store all their resumes in
+ 2.Resume upload e storage: Let users upload and store all their resumes in
 one place, safely and reliably.
 
 3. Al resume matchinq: Provide a job listing and get an ATS score with custom
