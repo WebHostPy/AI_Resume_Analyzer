@@ -23,30 +23,31 @@ A modern, production-ready template for building full-stack React applications u
 - **[Zustand](https://github.com/pmndrs/zustand)** is a minimal, hook-based state management library for React. It lets you manage global state with zero boilerplate, no context providers, and excellent performance through selective state subscriptions.
   
 ## Features
-1. Easy e convenient auth: Handle authentication entirely in the browser
-using Puterjs–no backend or setup required.
+👉 **Easy & convenient auth**: Handle authentication entirely in the browser using Puter.js—no backend or setup required.
 
-2. Resume upload e storage: Let users upload and store all their resumes in
-one place, safely and reliably.
+👉 **Resume upload & storage**: Let users upload and store all their resumes in one place, safely and reliably.
 
-3. Al resume matchinq: Provide a job listing and get an ATS score with custom
-feedback tailored to each resume.
+👉 **AI resume matching**: Provide a job listing and get an ATS score with custom feedback tailored to each resume.
 
-4. Reusable, modern u: Built with clean, consistent components for a great-
-looking and maintainable interface.
+👉 **Reusable, modern UI**: Built with clean, consistent components for a great-looking and maintainable interface.
 
-5. Code Reusability: Leverage reusable components and a modular codebase
-for efficient development.
+👉 **Code Reusability**: Leverage reusable components and a modular codebase for efficient development.
 
-6. Cross-Device Compatibility; Fully responsive design that works seamlessly
-across all devices.
+👉 **Cross-Device Compatibility**: Fully responsive design that works seamlessly across all devices.
 
-7. Modern ui/Ux: clean, responsive desiqn built with Tailwind cSS and
-shaden/ui for a sleek user experience.
+👉 **Modern UI/UX**: Clean, responsive design built with Tailwind CSS and shadcn/ui for a sleek user experience.
+
 And many more, including code architecture and reusability.
 
 
 ## Getting Started
+
+**Cloning the Repository**
+
+```bash
+git clone https://github.com/WebHostPy/AI_Resume_Analyzer.git
+cd AI_Resume_Analyzer
+```
 
 ### Installation
 
