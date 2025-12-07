@@ -1,5 +1,5 @@
 <a href="https://i.imghippo.com/files/sjwt6948mIM.jpg" target="_blank" rel="noopener"><img src="https://i.imghippo.com/files/sjwt6948mIM.jpg" alt="Uploaded image on Imghippo" border="0"></a>
-# Welcome to React Router!
+# Welcome to React Router
 
 A modern, production-ready template for building full-stack React applications using React Router.
 
