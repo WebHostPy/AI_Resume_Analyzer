@@ -40,7 +40,7 @@
 And many more, including code architecture and reusability.
 
 
-## Getting Started
+## ⚡️ Getting Started
 
 **Cloning the Repository**
 
@@ -75,7 +75,7 @@ Create a production build:
 npm run build
 ```
 
-## Deployment
+## 🚀 Deployment
 
 ### Docker Deployment
 
