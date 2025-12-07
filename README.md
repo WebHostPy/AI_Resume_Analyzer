@@ -1,4 +1,4 @@
-<a href="https://i.imghippo.com/files/sjwt6948mIM.jpg" target="_blank" rel="noopener"><img src="https://i.imghippo.com/files/sjwt6948mIM.jpg" alt="Uploaded image on Imghippo" border="0"></a>
+<a href="https://i.imghippo.com/files/yZo7688M.jpg" target="_blank" rel="noopener"><img src="https://i.imghippo.com/files/yZo7688M.jpg" alt="Uploaded image on Imghippo" border="0"></a>
 
 # AI Resume Analyzer (CVISION)
 
