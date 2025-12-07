@@ -1,4 +1,5 @@
 <a href="https://i.imghippo.com/files/sjwt6948mIM.jpg" target="_blank" rel="noopener"><img src="https://i.imghippo.com/files/sjwt6948mIM.jpg" alt="Uploaded image on Imghippo" border="0"></a>
+
 # Welcome to React Router
 
 A modern, production-ready template for building full-stack React applications using React Router.
@@ -87,9 +88,10 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 
 Built with ❤️ using React Router.
 PROJECT EXPLANATION-
-# home.tsx we create array using map to store resume  
-# in constants create index.js - here export resumes  here also array used inside which lists given 
-# in typess create index.d.ts to define the type declarations or  declaraing interface for js or ts modules
-# in components create resumecard inside it make link and then use deconstructure for resume components so that they are easy to handle the components easily
+home.tsx we create array using map to store resume  
+in constants create index.js - here export resumes  here also array used inside which lists given  in typess create index.d.ts to define the type declarations or  declaraing interface for js or ts modules
+in components create resumecard inside it make link and then use deconstructure for resume components so that they are easy to handle the components easily
 scoreCircle is basically used for svg component in the resumecard here we pass a score variable
-=======
+![tech](https://github.com/user-attachments/assets/6d612f85-a4b9-464a-8f65-2a31e52a7078)
+![claude](https://github.com/user-attachments/assets/3db142ce-5ca4-4682-8ab5-23cc9ddf3bcd)
+
