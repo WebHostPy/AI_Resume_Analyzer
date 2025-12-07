@@ -41,16 +41,16 @@ one place, safely and reliably.
 3. Al resume matchinq: Provide a job listing and get an ATS score with custom
 feedback tailored to each resume.
 
-4.Reusable, modern u: Built with clean, consistent components for a great-
+4. Reusable, modern u: Built with clean, consistent components for a great-
 looking and maintainable interface.
 
-5.Code Reusability: Leverage reusable components and a modular codebase
+5. Code Reusability: Leverage reusable components and a modular codebase
 for efficient development.
 
-6.Cross-Device Compatibility; Fully responsive design that works seamlessly
+6. Cross-Device Compatibility; Fully responsive design that works seamlessly
 across all devices.
 
-7.Modern ui/Ux: clean, responsive desiqn built with Tailwind cSS and
+7. Modern ui/Ux: clean, responsive desiqn built with Tailwind cSS and
 shaden/ui for a sleek user experience.
 And many more, including code architecture and reusability.
 
