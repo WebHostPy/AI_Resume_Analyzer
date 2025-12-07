@@ -119,6 +119,12 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 
 Built with ❤️ using React Router.
 
+## 🗂 License
+
+This project is licensed under the **GNU General Public License v3**.
+
+See [LICENSE](../LICENSE) for more information.
+
 ## PROJECT EXPLANATION
 
 - In home.tsx we create array using map to store resume  
