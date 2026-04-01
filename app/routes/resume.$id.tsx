@@ -160,8 +160,8 @@ export default function Resume() {
 
             <div className="flex pt-14 sm:pt-16 min-h-screen max-lg:flex-col mx-auto max-w-[1800px]">
                 {/* Left Section - Document Viewer */}
-                <section className="w-[45%] p-4 sm:p-6 md:p-8 flex flex-col items-center sticky top-14 sm:top-16 h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-4rem)] overflow-hidden max-lg:relative max-lg:w-full max-lg:h-auto border-r border-gray-200/60 z-20 bg-gray-50/20">
-                    <div className="w-full flex flex-col h-full bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden relative">
+                <section className="w-full lg:w-[45%] p-4 sm:p-6 md:p-8 flex flex-col items-center lg:sticky top-14 sm:top-16 h-auto lg:h-[calc(100vh-4rem)] overflow-visible lg:overflow-hidden relative border-b lg:border-b-0 lg:border-r border-gray-200/60 z-20 bg-gray-50/20 mb-8 lg:mb-0">
+                    <div className="w-full flex flex-col h-[600px] max-h-[75vh] lg:max-h-none lg:h-full bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden relative">
                         {/* Header of Viewer */}
                         <div className="flex flex-wrap items-center justify-center sm:justify-between px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 bg-gray-50/50 gap-3">
                             <div className="flex items-center gap-2 shrink-0">
@@ -281,8 +281,7 @@ export default function Resume() {
                                     }
                                 }
                             }}
-                            className="flex-1 relative bg-gray-100 overflow-hidden group/canvas"
-                            style={{ aspectRatio: '210/297' }}
+                            className="flex-1 relative bg-gray-100 overflow-hidden group/canvas min-h-[400px] lg:min-h-0"
                         >
                             <div className={`absolute inset-0 transition-opacity duration-500 overflow-y-auto custom-scrollbar p-6 bg-gray-100/50 flex align-top justify-center ${activeTab === 'original' ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
                                 <img src={imageUrl} alt="Original" className="w-[95%] h-auto shadow-lg border border-gray-200 object-contain mx-auto my-0 self-start bg-white cursor-zoom-in" />
