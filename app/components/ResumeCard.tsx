@@ -53,7 +53,7 @@ const ResumeCard = ({ resume }: { resume: Resume }) => {
             <button 
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="absolute top-[4.5rem] right-6 z-40 p-2 bg-white rounded-lg text-gray-400 hover:text-red-500 border border-gray-100 shadow-sm opacity-0 group-hover/card:opacity-100 transition-all duration-300 hover:scale-110 active:scale-95 disabled:opacity-50"
+                className="absolute top-[4.5rem] right-6 z-40 p-2 bg-white rounded-lg text-gray-400 hover:text-red-500 border border-gray-100 shadow-sm opacity-100 lg:opacity-0 lg:group-hover/card:opacity-100 transition-all duration-300 hover:scale-110 active:scale-95 disabled:opacity-50"
                 title="Wipe Intelligence Audit"
             >
                 {isDeleting ? (
