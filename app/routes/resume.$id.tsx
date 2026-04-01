@@ -320,7 +320,7 @@ export default function Resume() {
 
                                                     <div className="grid grid-cols-12 gap-5 mt-1">
                                                         {/* Left Column */}
-                                                        <div className="col-span-12 md:col-span-7 space-y-3.5">
+                                                        <div className="col-span-7 space-y-3.5">
                                                             <section>
                                                                 <h2 className="text-xs font-black uppercase tracking-widest text-black border-b-[1.5px] border-black pb-1 mb-1.5">Summary</h2>
                                                                 <p className="text-[8px] leading-relaxed text-gray-700 font-medium text-justify">{feedback.extractedData.summary}</p>
@@ -385,7 +385,7 @@ export default function Resume() {
                                                         </div>
 
                                                         {/* Right Column */}
-                                                        <div className="col-span-12 md:col-span-5 space-y-3.5">
+                                                        <div className="col-span-5 space-y-3.5">
                                                             <section>
                                                                 <h2 className="text-xs font-black uppercase tracking-widest text-black border-b-[1.5px] border-black pb-1 mb-1.5">Strengths</h2>
                                                                 <div className="space-y-2">
