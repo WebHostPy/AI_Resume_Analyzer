@@ -37,9 +37,11 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                     >
                         {/* Remove Button */}
                         <button 
+                            type="button"
                             className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-sm cursor-pointer hover:bg-red-50 border border-gray-100 transition-colors z-10" 
                             onClick={(e) => {
                                 e.stopPropagation();
+                                e.preventDefault();
                                 onFileSelect?.(null);
                             }}
                         >
