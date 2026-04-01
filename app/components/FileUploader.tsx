@@ -7,29 +7,29 @@ interface FileUploaderProps {
 }
 
 const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
+    const [localFile, setLocalFile] = useState<File | null>(null);
+
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const file = acceptedFiles[0] || null;
-
+        setLocalFile(file);
         onFileSelect?.(file);
     }, [onFileSelect]);
 
     const maxFileSize = 20 * 1024 * 1024; // 20MB in bytes
 
-    const {getRootProps, getInputProps, isDragActive, acceptedFiles} = useDropzone({
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({
         onDrop,
         multiple: false,
         accept: { 'application/pdf': ['.pdf']},
         maxSize: maxFileSize,
     })
 
-    const file = acceptedFiles[0] || null;
-
     return (
         <div className="w-full">
             <div {...getRootProps()} className="w-full outline-none">
                 <input {...getInputProps()} />
 
-                {file ? (
+                {localFile ? (
                     // SELECTED STATE
                     <div 
                         className="flex flex-col items-center justify-center p-8 border-2 border-blue-400 rounded-2xl bg-blue-50 relative overflow-hidden group transition-all" 
@@ -42,6 +42,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                             onClick={(e) => {
                                 e.stopPropagation();
                                 e.preventDefault();
+                                setLocalFile(null);
                                 onFileSelect?.(null);
                             }}
                         >
@@ -60,10 +61,10 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                         </div>
 
                         <p className="text-blue-900 font-bold max-w-[250px] truncate text-center break-words px-4 text-[15px]">
-                            {file.name}
+                            {localFile.name}
                         </p>
                         <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest mt-2 border border-blue-200 bg-white px-3 py-1 rounded-full shadow-inner">
-                            {formatSize(file.size)} • SECURE UPLOAD
+                            {formatSize(localFile.size)} • SECURE UPLOAD
                         </p>
                     </div>
                 ): (
