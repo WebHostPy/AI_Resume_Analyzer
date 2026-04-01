@@ -263,7 +263,7 @@ Overall Assessment: [Holistic summary]`;
                         )}
                         {messages.map((msg, i) => (
                             <div key={i} className={`flex flex-col max-w-[85%] ${msg.role === 'user' ? 'self-end' : 'self-start'}`}>
-                                <div className={`p-4 rounded-2xl text-[14px] leading-relaxed shadow-sm relative group ${msg.role === 'user' ? 'primary-gradient text-white rounded-br-none' : 'bg-white text-gray-800 rounded-bl-none border border-gray-100'}`}>
+                                <div className={`p-4 rounded-2xl text-[14px] leading-relaxed shadow-sm relative group ${msg.role === 'user' ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-br-none' : 'bg-white text-gray-800 rounded-bl-none border border-gray-100'}`}>
                                     {msg.content}
                                     {msg.role === 'assistant' && <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border-l border-b border-gray-100 rotate-45"></div>}
                                 </div>
@@ -306,7 +306,7 @@ Overall Assessment: [Holistic summary]`;
                             <div className="w-full space-y-4">
                                 <button
                                     onClick={downloadTranscript}
-                                    className="w-full py-4 primary-gradient text-white rounded-2xl font-bold flex justify-center items-center gap-3 hover-scale shadow-lg"
+                                    className="w-full py-4 bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl font-bold flex justify-center items-center gap-3 hover:scale-[1.02] transition-transform shadow-lg"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                                     Save Audit Transcript
@@ -319,7 +319,7 @@ Overall Assessment: [Holistic summary]`;
                                     disabled={isLoading}
                                     className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-90 ${isListening
                                         ? "bg-red-500 shadow-2xl shadow-red-500/40"
-                                        : "primary-gradient shadow-2xl shadow-blue-500/40"
+                                        : "bg-gradient-to-br from-blue-600 to-blue-700 shadow-2xl shadow-blue-500/40"
                                         } disabled:grayscale disabled:opacity-50`}
                                 >
                                     {isListening ? (
