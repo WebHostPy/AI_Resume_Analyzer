@@ -12,6 +12,7 @@ const Upload = () => {
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState('');
+    const [errorText, setErrorText] = useState('');
     const [file, setFile] = useState<File | null>(null);
 
     const handleFileSelect = (file: File | null) => {
@@ -21,6 +22,7 @@ const Upload = () => {
     const handleAnalyze = async ({ companyName, jobTitle, jobDescription, file }: { companyName: string, jobTitle: string, jobDescription: string, file: File }) => {
         setIsProcessing(true);
         setStatusText('Initializing Neural Matrix...');
+        setErrorText('');
 
         try {
             // Step 1: Upload Original PDF
@@ -96,6 +98,11 @@ const Upload = () => {
 
                     jsonResponse = JSON.parse(repaired);
                 }
+                
+                // Normalization if wrapped inside a feedback object
+                if (jsonResponse.feedback && !jsonResponse.extractedData) {
+                    jsonResponse = jsonResponse.feedback;
+                }
             } catch (finalE) {
                 console.error("Failed to parse AI response:", feedbackText);
                 throw new Error("Intelligence parsing error - Result structure invalid.");
@@ -126,7 +133,7 @@ const Upload = () => {
         } catch (error: any) {
             console.error('Error in handleAnalyze:', error);
             const errorMessage = error?.error?.message || error?.message || 'An unexpected error occurred';
-            setStatusText(`Error: ${errorMessage}`);
+            setErrorText(errorMessage);
             setIsProcessing(false);
         }
     }
@@ -150,7 +157,7 @@ const Upload = () => {
         <main className="text-black selection:bg-blue-100 relative">
             <Navbar />
 
-            <section className="flex-1 w-full max-w-[1400px] mx-auto px-6 pt-40 pb-20 flex flex-col items-center justify-center relative z-10">
+            <section className="flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-6 pt-28 md:pt-40 pb-16 md:pb-20 flex flex-col items-center justify-center relative z-10">
                 <div className="text-center mb-20 animate-in fade-in slide-in-from-top-6 duration-1000">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-6 mx-auto">
                         <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
@@ -164,11 +171,11 @@ const Upload = () => {
                     </p>
                 </div>
 
-                <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row gap-12">
+                <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-12">
 
                     {/* Status Console (Left Side) */}
                     <div className="w-full lg:w-[35%] flex flex-col gap-6 animate-in fade-in slide-in-from-left-6 duration-1000">
-                        <div className="glassmorphism border-[3px] border-white ring-2 ring-indigo-200/50 rounded-3xl p-8 flex-1">
+                        <div className="glassmorphism border-[3px] border-white ring-2 ring-indigo-200/50 rounded-2xl md:rounded-3xl p-6 md:p-8 flex-1">
                             <h3 className="text-xs font-black uppercase tracking-widest text-gray-500 mb-8 border-b border-gray-100 pb-4">Audit Status</h3>
 
                             <div className="space-y-8">
@@ -201,7 +208,7 @@ const Upload = () => {
 
                     {/* Main Interaction Area (Right Side) */}
                     <div className="flex-1 animate-in fade-in slide-in-from-right-6 duration-1000 delay-100">
-                        <div className="glassmorphism border-[3px] border-white ring-2 ring-indigo-200/50 rounded-[3rem] p-8 md:p-14 overflow-hidden relative">
+                        <div className="glassmorphism border-[3px] border-white ring-2 ring-indigo-200/50 rounded-[2rem] md:rounded-[3rem] p-5 sm:p-8 md:p-14 overflow-hidden relative">
                             {isProcessing ? (
                                 <div className="flex flex-col items-center justify-center py-20 text-center">
                                     <div className="relative w-32 h-32 mb-12">
@@ -219,7 +226,12 @@ const Upload = () => {
                                 </div>
                             ) : (
                                 <form id="upload-form" onSubmit={handleSubmit} className="space-y-12">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                    {errorText && (
+                                        <div className="p-4 bg-red-50 border border-red-200 text-red-600 rounded-xl text-xs font-bold text-center -mb-4 shadow-sm">
+                                            ⚠️ Neural Computation Error: {errorText}
+                                        </div>
+                                    )}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 ml-1">Target Institution</label>
                                             <input
@@ -227,7 +239,7 @@ const Upload = () => {
                                                 type="text"
                                                 name="company-name"
                                                 placeholder="e.g. OpenAI, SpaceX"
-                                                className="w-full px-5 py-4 text-lg font-bold bg-gray-50/50 border-2 border-gray-100 focus:border-blue-600 focus:bg-white rounded-2xl transition-all placeholder:text-gray-300 outline-none"
+                                                className="w-full px-4 md:px-5 py-3 md:py-4 text-base md:text-lg font-bold bg-gray-50/50 border-2 border-gray-100 focus:border-blue-600 focus:bg-white rounded-xl md:rounded-2xl transition-all placeholder:text-gray-300 outline-none"
                                             />
                                         </div>
                                         <div className="space-y-3">
@@ -237,7 +249,7 @@ const Upload = () => {
                                                 type="text"
                                                 name="job-title"
                                                 placeholder="e.g. Lead Architect"
-                                                className="w-full px-5 py-4 text-lg font-bold bg-gray-50/50 border-2 border-gray-100 focus:border-blue-600 focus:bg-white rounded-2xl transition-all placeholder:text-gray-300 outline-none"
+                                                className="w-full px-4 md:px-5 py-3 md:py-4 text-base md:text-lg font-bold bg-gray-50/50 border-2 border-gray-100 focus:border-blue-600 focus:bg-white rounded-xl md:rounded-2xl transition-all placeholder:text-gray-300 outline-none"
                                             />
                                         </div>
                                     </div>
@@ -248,7 +260,7 @@ const Upload = () => {
                                             rows={4}
                                             name="job-description"
                                             placeholder="Optimize analysis by pasting the job specification..."
-                                            className="w-full px-5 py-4 text-sm font-medium leading-relaxed bg-gray-50/50 border-2 border-gray-100 focus:border-blue-600 focus:bg-white rounded-2xl transition-all resize-none placeholder:text-gray-300 outline-none"
+                                            className="w-full px-4 md:px-5 py-3 md:py-4 text-sm font-medium leading-relaxed bg-gray-50/50 border-2 border-gray-100 focus:border-blue-600 focus:bg-white rounded-xl md:rounded-2xl transition-all resize-none placeholder:text-gray-300 outline-none"
                                         />
                                     </div>
 
@@ -261,7 +273,7 @@ const Upload = () => {
 
                                     <div className="pt-8">
                                         <button
-                                            className="group/btn relative w-full !py-6 bg-black text-white hover:bg-gray-900 rounded-[2rem] transition-all duration-500 overflow-hidden flex items-center justify-center gap-4 shadow-2xl shadow-gray-200 active:scale-[0.98] disabled:opacity-30"
+                                            className="group/btn relative w-full !py-4 md:!py-6 bg-black text-white hover:bg-gray-900 rounded-2xl md:rounded-[2rem] transition-all duration-500 overflow-hidden flex items-center justify-center gap-4 shadow-2xl shadow-gray-200 active:scale-[0.98] disabled:opacity-30"
                                             type="submit"
                                             disabled={!file}
                                         >
@@ -279,7 +291,7 @@ const Upload = () => {
                 </div>
 
                 {/* Secure Trust Footer */}
-                <div className="mt-20 flex items-center gap-12 opacity-40 animate-in fade-in duration-1000 delay-500">
+                <div className="mt-12 md:mt-20 flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-12 opacity-40 animate-in fade-in duration-1000 delay-500">
                     {['Trusted encryption', 'No data persistence', 'SOC2 Compliant', 'GDPR Ready'].map((text, i) => (
                         <div key={i} className="flex items-center gap-2">
                             <div className="w-1 h-1 bg-black rounded-full"></div>

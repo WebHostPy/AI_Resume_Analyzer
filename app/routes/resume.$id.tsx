@@ -444,6 +444,12 @@ export default function Resume() {
                                                         </div>
                                                     </div>
                                                 </div>
+                                            ) : feedback ? (
+                                                <div className="w-full h-full flex flex-col items-center justify-center p-20 text-center gap-4 bg-red-50/30">
+                                                    <div className="text-4xl opacity-50">⚠️</div>
+                                                    <p className="text-red-600/80 font-bold text-sm">Detailed Data Extraction Failed</p>
+                                                    <p className="text-gray-500 text-xs font-medium max-w-[200px]">The core generated an audit, but specific metadata formatting failed for the Original PDF.</p>
+                                                </div>
                                             ) : (
                                                 <div className="w-full h-full flex flex-col items-center justify-center p-20 text-center gap-4">
                                                     <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>

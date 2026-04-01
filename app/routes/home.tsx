@@ -52,21 +52,21 @@ export default function Home() {
 
     <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       {/* Hero Section */}
-      <div className="flex flex-col items-center text-center pt-48 pb-20 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+      <div className="flex flex-col items-center text-center pt-32 md:pt-48 pb-12 md:pb-20 animate-in fade-in slide-in-from-bottom-8 duration-1000">
         <div className="inline-flex items-center rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest bg-blue-50 text-blue-600 ring-1 ring-inset ring-blue-600/20 mb-8 shadow-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-2 animate-pulse"></span>
           Neural Engine Powered
         </div>
-        <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.1] font-black tracking-tighter text-gray-900 mb-8 max-w-5xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.1] md:leading-[1.1] lg:leading-[1.1] font-black tracking-tighter text-gray-900 mb-6 md:mb-8 max-w-5xl mx-auto">
           Elevate Your Career with <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">CVision Intelligence</span>
         </h1>
-        <p className="text-xl md:text-2xl text-gray-500 max-w-3xl mx-auto mb-12 leading-relaxed">
+        <p className="text-base sm:text-lg md:text-2xl text-gray-500 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4 md:px-0">
           The ultimate AI-powered resume strategist. Get an instant ATS scan, targeted gap discovery, and perfectly formulated career feedback.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <Link to="/upload" className="primary-button relative overflow-hidden group !w-fit !px-10 !py-4 text-lg font-bold shadow-[0_4px_16px_rgba(37,99,235,0.3)] hover:shadow-[0_8px_30px_rgba(37,99,235,0.4)] transition-all duration-300 transform hover:-translate-y-1 rounded-2xl flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full px-4 sm:px-0">
+          <Link to="/upload" className="primary-button relative overflow-hidden group w-full sm:w-auto !px-8 md:!px-10 !py-3 md:!py-4 text-base md:text-lg font-bold shadow-[0_4px_16px_rgba(37,99,235,0.3)] hover:shadow-[0_8px_30px_rgba(37,99,235,0.4)] transition-all duration-300 transform hover:-translate-y-1 rounded-2xl flex items-center justify-center gap-3">
             Analyze Your Resume →
           </Link>
           <a href="#features" className="px-8 py-4 text-lg font-semibold text-gray-700 hover:text-blue-600 transition-colors">
@@ -92,9 +92,9 @@ export default function Home() {
       </div>
 
       {/* Features Section */}
-      <div id="features" className="w-full py-24 scroll-mt-20">
+      <div id="features" className="w-full py-16 md:py-24 scroll-mt-20 px-4 md:px-0">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Master Your Job Search in 3 Strategic Steps</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Master Your Job Search in 3 Strategic Steps</h2>
           <p className="text-gray-500 max-w-xl mx-auto italic font-medium">Strategic bridging from resume upload to final interview mastery.</p>
         </div>
 
@@ -128,10 +128,10 @@ export default function Home() {
       {/* Main Content / Resumes */}
       <div id="resumes" className="w-full space-y-12 pb-24 top-10 relative">
 
-        <div className="flex items-center justify-between border-b border-gray-200 pb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-gray-200 pb-6 gap-4 sm:gap-0 px-4 sm:px-0">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">Your Applications</h2>
-            <p className="text-gray-500 mt-1">Manage and track your analyzed resumes</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Your Applications</h2>
+            <p className="text-gray-500 mt-1 text-sm md:text-base">Manage and track your analyzed resumes</p>
           </div>
           {resumes.length > 0 && (
             <Link to="/upload" className="text-blue-600 font-semibold hover:underline">
@@ -159,8 +159,8 @@ export default function Home() {
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">No resumes analyzed yet</h3>
-            <p className="text-gray-500 mb-8 max-w-sm mx-auto">Upload your first resume to see the magic of AI analysis and get career-ready.</p>
-            <Link to="/upload" className="primary-button !w-fit !px-10 !py-4 text-lg font-bold hover-scale mx-auto block">
+            <p className="text-gray-500 mb-8 max-w-sm mx-auto px-4 md:px-0">Upload your first resume to see the magic of AI analysis and get career-ready.</p>
+            <Link to="/upload" className="primary-button !w-fit !px-8 md:!px-10 !py-3 md:!py-4 text-base md:text-lg font-bold hover-scale mx-auto block">
               Getting Started
             </Link>
           </div>

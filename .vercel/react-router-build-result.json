@@ -1,0 +1,134 @@
+{
+  "buildManifest": {
+    "serverBundles": {
+      "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0": {
+        "id": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+        "file": "build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
+        "config": {
+          "runtime": "nodejs"
+        }
+      }
+    },
+    "routeIdToServerBundleId": {
+      "routes/home": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/auth": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/upload": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/resume.$id": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/wipe": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0"
+    },
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "app/root.tsx",
+        "config": {}
+      },
+      "routes/home": {
+        "id": "routes/home",
+        "parentId": "root",
+        "file": "app/routes/home.tsx",
+        "index": true,
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/auth": {
+        "id": "routes/auth",
+        "parentId": "root",
+        "file": "app/routes/auth.tsx",
+        "path": "/auth",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/upload": {
+        "id": "routes/upload",
+        "parentId": "root",
+        "file": "app/routes/upload.tsx",
+        "path": "/upload",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/resume.$id": {
+        "id": "routes/resume.$id",
+        "parentId": "root",
+        "file": "app/routes/resume.$id.tsx",
+        "path": "/resume/:id",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/wipe": {
+        "id": "routes/wipe",
+        "parentId": "root",
+        "file": "app/routes/wipe.tsx",
+        "path": "/wipe",
+        "config": {
+          "runtime": "nodejs"
+        }
+      }
+    }
+  },
+  "reactRouterConfig": {
+    "appDirectory": "C:/Users/DELL/Desktop/AI_Resume/AI_Resume_Analyzer/app",
+    "basename": "/",
+    "buildDirectory": "C:/Users/DELL/Desktop/AI_Resume/AI_Resume_Analyzer/build",
+    "future": {
+      "unstable_middleware": false,
+      "unstable_optimizeDeps": false,
+      "unstable_splitRouteModules": false,
+      "unstable_subResourceIntegrity": false,
+      "unstable_viteEnvironmentApi": false
+    },
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "root.tsx"
+      },
+      "routes/home": {
+        "id": "routes/home",
+        "parentId": "root",
+        "file": "routes/home.tsx",
+        "index": true
+      },
+      "routes/auth": {
+        "id": "routes/auth",
+        "parentId": "root",
+        "file": "routes/auth.tsx",
+        "path": "/auth"
+      },
+      "routes/upload": {
+        "id": "routes/upload",
+        "parentId": "root",
+        "file": "routes/upload.tsx",
+        "path": "/upload"
+      },
+      "routes/resume.$id": {
+        "id": "routes/resume.$id",
+        "parentId": "root",
+        "file": "routes/resume.$id.tsx",
+        "path": "/resume/:id"
+      },
+      "routes/wipe": {
+        "id": "routes/wipe",
+        "parentId": "root",
+        "file": "routes/wipe.tsx",
+        "path": "/wipe"
+      }
+    },
+    "routeDiscovery": {
+      "mode": "lazy",
+      "manifestPath": "/__manifest"
+    },
+    "serverBuildFile": "index.js",
+    "serverModuleFormat": "esm",
+    "ssr": true
+  },
+  "viteConfig": {
+    "build": {
+      "assetsDir": "assets"
+    }
+  }
+}

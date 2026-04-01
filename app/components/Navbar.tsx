@@ -6,11 +6,11 @@ const Navbar = () => {
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-[100] w-full animate-in slide-in-from-top-4 fade-in duration-700 bg-white/40 backdrop-blur-xl border-b border-indigo-200/30 shadow-sm flex justify-center">
-            <div className="w-full max-w-[1700px] px-8 h-20 flex items-center justify-between">
+            <div className="w-full max-w-[1700px] px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
                 
                 {/* LOGO SECTION - Neural Core */}
-                <Link to="/" className="flex items-center gap-5 group/logo">
-                    <div className="relative w-12 h-12 flex items-center justify-center">
+                <Link to="/" className="flex items-center gap-3 md:gap-5 group/logo">
+                    <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
                         {/* THE EXTRAORDINARY NEURAL CORE */}
                         {/* Atmosphere Glow */}
                         <div className="absolute inset-[-4px] bg-blue-500/20 rounded-2xl blur-xl animate-pulse group-hover/logo:bg-blue-500/40 transition-all duration-1000"></div>
@@ -19,7 +19,7 @@ const Navbar = () => {
                         <div className="absolute inset-0 bg-white/40 backdrop-blur-md rounded-2xl border border-white/60 shadow-[0_8px_32px_rgba(37,99,235,0.1)] group-hover/logo:scale-110 transition-transform duration-700"></div>
                         
                         {/* Rotating Prism Node */}
-                        <div className="relative w-7 h-7 flex items-center justify-center animate-[spin_8s_linear_infinite]">
+                        <div className="relative w-6 h-6 md:w-7 md:h-7 flex items-center justify-center animate-[spin_8s_linear_infinite]">
                             <svg className="w-full h-full text-blue-600 drop-shadow-[0_0_8px_rgba(37,99,235,0.4)]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 <circle cx="12" cy="11" r="3" className="fill-blue-600 shadow-xl" />
@@ -32,7 +32,7 @@ const Navbar = () => {
                              <div className="absolute left-0 top-1/2 -translate-y-1/2 h-px w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
                         </div>
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col scale-[0.85] md:scale-100 origin-left">
                         <div className="flex items-center">
                             <span className="text-3xl font-black tracking-[-0.08em] text-gray-900 leading-none">C</span>
                             {/* ULTRA STYLISH PRISM-SLASH V */}
@@ -66,18 +66,18 @@ const Navbar = () => {
                 </div>
 
                 {/* RIGHT ACTIONS - High Density */}
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3 md:gap-6">
                     {auth.isAuthenticated && (
                         <button
                             onClick={() => auth.signOut()}
-                            className="text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-red-600 transition-colors cursor-pointer"
+                            className="hidden sm:block text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-red-600 transition-colors cursor-pointer"
                         >
                             Disconnect
                         </button>
                     )}
                     
-                    <Link to="/upload" className="primary-button !py-3 !px-8 !text-xs !tracking-[0.2em] font-black uppercase rounded-2xl shadow-[0_8px_20px_-5px_rgba(37,99,235,0.4)]">
-                        Initialize New Audit
+                    <Link to="/upload" className="primary-button !py-2.5 md:!py-3 !px-4 md:!px-8 !text-[9px] md:!text-xs !tracking-[0.1em] md:!tracking-[0.2em] font-black uppercase rounded-[1rem] md:rounded-2xl shadow-[0_8px_20px_-5px_rgba(37,99,235,0.4)] whitespace-nowrap">
+                        <span className="hidden sm:inline">Initialize New</span> Audit
                     </Link>
                 </div>
                 
