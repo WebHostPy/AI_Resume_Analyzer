@@ -137,8 +137,8 @@ export default function Resume() {
     return (
         <main className="min-h-screen text-gray-900 selection:bg-blue-100 pb-20 font-sans">
             {/* Top Navigation Bar */}
-            <nav className="fixed top-0 w-full z-[100] bg-white border-b border-gray-200 shadow-sm flex justify-center h-16">
-                <div className="w-full max-w-[1800px] px-8 flex items-center justify-between">
+            <nav className="fixed top-0 w-full z-[100] bg-white border-b border-gray-200 shadow-sm flex justify-center h-14 sm:h-16">
+                <div className="w-full max-w-[1800px] px-4 sm:px-8 flex items-center justify-between mt-1 sm:mt-0">
                     <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
                         <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-sm">
                             <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,24 +158,24 @@ export default function Resume() {
                 </div>
             </nav>
 
-            <div className="flex pt-16 min-h-screen max-lg:flex-col mx-auto max-w-[1800px]">
+            <div className="flex pt-14 sm:pt-16 min-h-screen max-lg:flex-col mx-auto max-w-[1800px]">
                 {/* Left Section - Document Viewer */}
-                <section className="w-[45%] p-8 flex flex-col items-center sticky top-16 h-[calc(100vh-4rem)] overflow-hidden max-lg:relative max-lg:w-full max-lg:h-auto border-r border-gray-200/60">
+                <section className="w-[45%] p-4 sm:p-6 md:p-8 flex flex-col items-center sticky top-14 sm:top-16 h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-4rem)] overflow-hidden max-lg:relative max-lg:w-full max-lg:h-auto border-r border-gray-200/60 z-20 bg-gray-50/20">
                     <div className="w-full flex flex-col h-full bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden relative">
                         {/* Header of Viewer */}
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50/50">
-                            <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center justify-center sm:justify-between px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 bg-gray-50/50 gap-3">
+                            <div className="flex items-center gap-2 shrink-0">
                                 <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                                <span className="text-xs font-semibold text-gray-600">Document Viewer</span>
+                                <span className="text-xs font-semibold text-gray-600 hidden sm:block">Document Viewer</span>
                             </div>
-                            <div className="bg-gray-100/80 p-1 rounded-lg flex gap-1">
+                            <div className="bg-gray-100/80 p-0.5 sm:p-1 rounded-lg flex gap-1 w-full sm:w-auto shrink-0 justify-center">
                                 {['original', 'enhancv'].map((tab: any) => (
                                     <button
                                         key={tab}
                                         onClick={() => handleTabSwitch(tab)}
-                                        className={`px-4 py-1.5 rounded-md text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ease-out active:scale-95 ${activeTab === tab ? 'bg-white text-blue-600 shadow-sm border border-gray-200/50 scale-100' : 'text-gray-500 hover:text-gray-800 hover:bg-white/50 hover:scale-105'}`}
+                                        className={`flex-1 sm:flex-none px-3 sm:px-4 py-1.5 rounded-md text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ease-out active:scale-95 ${activeTab === tab ? 'bg-white text-blue-600 shadow-sm border border-gray-200/50 scale-100' : 'text-gray-500 hover:text-gray-800 hover:bg-white/50 hover:scale-105'}`}
                                     >
-                                        {tab === 'original' ? 'Original PDF' : 'Enhanced Version'}
+                                        {tab === 'original' ? 'Original PDF' : 'Enhanced'}
                                     </button>
                                 ))}
                             </div>
@@ -227,10 +227,10 @@ export default function Resume() {
                                         }
                                     }
                                 }}
-                                className="flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 hover:shadow-blue-300 hover:scale-105 transition-all duration-300 shadow-lg shadow-blue-200 active:scale-90"
+                                className="flex items-center justify-center gap-1 sm:gap-2 px-2.5 sm:px-3 py-1.5 bg-blue-600 text-white rounded-lg text-[9px] sm:text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 hover:shadow-blue-300 hover:scale-105 transition-all duration-300 shadow-lg shadow-blue-200 active:scale-90 w-full sm:w-auto shrink-0 flex-1 sm:flex-none"
                             >
                                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                                Open Full PDF
+                                <span>Open PDF</span>
                             </button>
                         </div>
 
@@ -465,8 +465,8 @@ export default function Resume() {
                 </section>
 
                 {/* Right Section - Analysis Report */}
-                <section className="w-[55%] p-12 overflow-y-auto max-lg:w-full">
-                    <div className="max-w-4xl mx-auto">
+                <section className="w-[55%] p-4 sm:p-8 md:p-12 overflow-y-auto max-lg:w-full">
+                    <div className="max-w-4xl mx-auto mt-4 sm:mt-0">
                         <div className="mb-10 space-y-3">
                             <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-blue-600 bg-blue-50/50 w-max px-3 py-1 rounded-full border border-blue-100">
                                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
