@@ -18,6 +18,7 @@ declare global {
                 upload: (file: File[] | Blob[]) => Promise<FSItem>;
                 delete: (path: string) => Promise<void>;
                 readdir: (path: string) => Promise<FSItem[] | undefined>;
+                getReadURL: (path: string) => Promise<string>;
             };
             ai: {
                 chat: (
@@ -34,7 +35,7 @@ declare global {
             kv: {
                 get: (key: string) => Promise<string | null>;
                 set: (key: string, value: string) => Promise<boolean>;
-                delete: (key: string) => Promise<boolean>;
+                del: (key: string) => Promise<boolean>;
                 list: (pattern: string, returnValues?: boolean) => Promise<string[]>;
                 flush: () => Promise<boolean>;
             };
@@ -64,6 +65,7 @@ interface PuterStore {
         upload: (file: File[] | Blob[]) => Promise<FSItem | undefined>;
         delete: (path: string) => Promise<void>;
         readDir: (path: string) => Promise<FSItem[] | undefined>;
+        getReadURL: (path: string) => Promise<string | undefined>;
     };
     ai: {
         chat: (
@@ -123,12 +125,17 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             return false;
         }
 
+        // Optimization: Start setting loading state
         set({ isLoading: true, error: null });
 
         try {
-            const isSignedIn = await puter.auth.isSignedIn();
-            if (isSignedIn) {
-                const user = await puter.auth.getUser();
+            // Optimization: Parallelize these calls to reduce latency by ~50%
+            const [isSignedIn, user] = await Promise.all([
+                puter.auth.isSignedIn(),
+                puter.auth.getUser().catch(() => null) // Ensure it doesn't crash if getUser fails
+            ]);
+
+            if (isSignedIn && user) {
                 set({
                     auth: {
                         user,
@@ -249,13 +256,15 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             return;
         }
 
+        // Optimization: Reduced interval from 100ms to 50ms for faster detection
         const interval = setInterval(() => {
-            if (getPuter()) {
+            const p = getPuter();
+            if (p) {
                 clearInterval(interval);
                 set({ puterReady: true });
                 checkAuthStatus();
             }
-        }, 100);
+        }, 50);
 
         setTimeout(() => {
             clearInterval(interval);
@@ -310,6 +319,15 @@ export const usePuterStore = create<PuterStore>((set, get) => {
         return puter.fs.delete(path);
     };
 
+    const getReadURL = async (path: string) => {
+        const puter = getPuter();
+        if (!puter) {
+            setError("Puter.js not available");
+            return;
+        }
+        return (puter.fs as any).getReadURL(path);
+    };
+
     const chat = async (
         prompt: string | ChatMessage[],
         imageURL?: string | PuterChatOptions,
@@ -334,24 +352,29 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             return;
         }
 
-        return puter.ai.chat(
-            [
-                {
-                    role: "user",
-                    content: [
-                        {
-                            type: "file",
-                            puter_path: path,
-                        },
-                        {
-                            type: "text",
-                            text: message,
-                        },
-                    ],
-                },
-            ],
-            { model: "anthropic/claude-sonnet-4-5" }
-        ) as Promise<AIResponse | undefined>;
+        try {
+            return await puter.ai.chat(
+                [
+                    {
+                        role: "user",
+                        content: [
+                            {
+                                type: "file",
+                                puter_path: path,
+                            },
+                            {
+                                type: "text",
+                                text: message,
+                            },
+                        ],
+                    },
+                ],
+                { model: "openai/gpt-4o-mini" }
+            ) as Promise<AIResponse | undefined>;
+        } catch (err: any) {
+            console.error("AI feedback error:", err);
+            throw err;
+        }
     };
 
     const img2txt = async (image: string | File | Blob, testMode?: boolean) => {
@@ -387,7 +410,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             setError("Puter.js not available");
             return;
         }
-        return puter.kv.delete(key);
+        return (puter.kv as any).del(key);
     };
 
     const listKV = async (pattern: string, returnValues?: boolean) => {
@@ -430,6 +453,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             readDir: (path: string) => readDir(path),
             upload: (files: File[] | Blob[]) => upload(files),
             delete: (path: string) => deleteFile(path),
+            getReadURL: (path: string) => getReadURL(path),
         },
         ai: {
             chat: (

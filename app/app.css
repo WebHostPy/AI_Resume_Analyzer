@@ -1,152 +1,204 @@
-@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @theme {
-  --font-sans: "Mona Sans", ui-sans-serif, system-ui, sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --color-dark-200: #475467;
-  --color-light-blue-100: #c1d3f81a;
-  --color-light-blue-200: #a7bff14d;
-
-  --color-badge-green: #d5faf1;
-  --color-badge-red: #f9e3e2;
-  --color-badge-yellow: #fceed8;
-
-  --color-badge-green-text: #254d4a;
-  --color-badge-red-text: #752522;
-  --color-badge-yellow-text: #73321b;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --color-primary-blue: #1d4ed8;
+  --color-primary-dark: #111827;
 }
+
+/* ═══════════════════════════════════════════════════ */
+/*  GLOBAL BASE STYLES                                */
+/* ═══════════════════════════════════════════════════ */
 
 html,
 body {
-  @apply bg-white;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 35%, #ffffff 65%, #fff1f2 100%);
+  @apply text-[#1f2937] antialiased tracking-tight;
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  margin: 0;
+  padding: 0;
 }
 
 main {
-  @apply min-h-screen pt-10;
-}
-h1 {
-  @apply text-6xl  text-gradient leading-tight tracking-[-2px] font-semibold;
-}
-
-h2 {
-  @apply text-3xl text-dark-200;
+  @apply h-screen overflow-y-auto overflow-x-hidden relative;
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
 }
 
-label {
-  @apply text-dark-200;
+main::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
+
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+main::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 rounded-full border-2 border-transparent bg-clip-padding;
+}
+
+main:hover::-webkit-scrollbar-thumb {
+  @apply bg-gray-400;
+}
+
+/* ═══════════════════════════════════════════════════ */
+/*  UTILITY SYSTEM                                     */
+/* ═══════════════════════════════════════════════════ */
+
+@utility custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 rounded-full border-2 border-transparent bg-clip-padding;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    @apply bg-gray-400;
+  }
+}
+
 input {
-  @apply w-full p-4 inset-shadow rounded-2xl focus:outline-none bg-white;
+  @apply w-full p-4 rounded-xl focus:outline-none bg-white border border-gray-200/80 shadow-sm focus:ring-2 focus:ring-blue-600/20 focus:border-blue-500 transition-all duration-300;
 }
 
-textarea {
-  @apply w-full p-4 inset-shadow rounded-2xl focus:outline-none bg-white;
-}
-
-form {
-  @apply flex flex-col items-start gap-8 w-full;
-}
+/* ═══════════════════════════════════════════════════ */
+/*  COMPONENT CLASSES                                 */
+/* ═══════════════════════════════════════════════════ */
 
 @layer components {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
-  }
-  .gradient-border {
-    @apply bg-gradient-to-b from-light-blue-100 to-light-blue-200 p-4 rounded-2xl;
-  }
   .primary-button {
-    @apply primary-gradient text-white rounded-full px-4 py-2 cursor-pointer w-full;
+    @apply text-white bg-blue-600 hover:bg-blue-700 rounded-full px-6 py-3 font-semibold transition-all duration-300 shadow-md hover:shadow-lg active:scale-95;
   }
-  .resume-nav {
-    @apply flex flex-row justify-between items-center p-4 border-b border-gray-200;
+
+  .glassmorphism {
+    @apply bg-white/80 backdrop-blur-2xl border border-indigo-300/40 shadow-[0_20px_50px_rgba(31,38,135,0.15)] shadow-blue-500/10;
   }
-  .resume-summary {
-    @apply flex flex-row items-center justify-center p-4 gap-4;
-    .category {
-      @apply flex flex-row gap-2 items-center bg-gray-50 rounded-2xl p-4 w-full justify-between;
+
+  .prism-border {
+    position: relative;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+  }
+
+  .prism-border::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    background: linear-gradient(135deg, #4f46e5, #60a5fa, #f472b6, #4f46e5);
+    background-size: 300% 300%;
+    animation: anime-border 8s linear infinite;
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0.4;
+  }
+
+  @keyframes anime-border {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
     }
   }
-  .back-button {
-    @apply flex flex-row items-center gap-2 border border-gray-200 rounded-lg p-2 shadow-sm;
-  }
-  .auth-button {
-    @apply primary-gradient rounded-full py-4 px-8 cursor-pointer w-[600px] max-md:w-full text-3xl font-semibold text-white;
-  }
-  .main-section {
-    @apply flex flex-col items-center gap-8 pt-12 mx-15 pb-5;
-  }
-  .page-heading {
-    @apply flex flex-col items-center gap-8 max-w-4xl text-center;
-  }
-  .resumes-section {
-    @apply flex flex-wrap max-lg:flex-col gap-6 items-start  w-full max-w-[1850px] justify-evenly;
-  }
 
-  .resume-card {
-    @apply flex flex-col gap-8 h-[560px] w-full lg:w-[450px] xl:w-[490px] bg-white rounded-2xl p-4;
-  }
-
-  .resume-card-header {
-    @apply flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center max-md:items-center;
-  }
-
-  .feedback-section {
-    @apply flex flex-col gap-8 w-1/2 px-8 max-lg:w-full py-6;
-  }
-
-  .navbar {
-    @apply flex flex-row justify-between items-center bg-white rounded-full p-4 w-full px-10 max-w-[1200px] mx-auto;
-  }
-
-  .score-badge {
-    @apply flex flex-row items-center justify-center py-1 px-2 gap-4 rounded-[96px];
-  }
-
-  .form-div {
-    @apply flex flex-col gap-2 w-full items-start;
-  }
-
-  .uplader-drag-area {
-    @apply relative p-8 text-center transition-all duration-700 cursor-pointer bg-white rounded-2xl min-h-[208px];
-  }
-  .uploader-selected-file {
-    @apply flex items-center justify-between p-3 bg-gray-50 rounded-2xl;
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98];
   }
 }
+
+/* ═══════════════════════════════════════════════════ */
+/*  UTILITY CLASSES                                   */
+/* ═══════════════════════════════════════════════════ */
 
 @utility bg-gradient {
-  background: linear-gradient(to bottom, #f0f4ff 60%, #fa7185cc);
+  background: linear-gradient(135deg, #f8f9fa 0%, #f1f5f9 100%);
 }
 
-@utility text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
+@utility animate-progress-ind {
+  animation: progress-ind 2s ease-in-out infinite;
 }
 
-@utility gradient-hover {
-  @apply bg-gradient-to-b from-light-blue-100 to-light-blue-200;
-}
-
-@utility primary-gradient {
-  background: linear-gradient(to bottom, #8e98ff, #606beb);
-  box-shadow: 0px 74px 21px 0px #6678ef00;
-}
-
-@utility primary-gradient-hover {
-  background: linear-gradient(to bottom, #717dff, #4957eb);
-}
-
-@utility inset-shadow {
-  box-shadow: inset 0 0 12px 0 rgba(36, 99, 235, 0.2);
-  backdrop-filter: blur(10px);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@keyframes progress-ind {
+  0% {
+    transform: translateX(-100%);
   }
-  to {
-    opacity: 1;
+
+  50% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PRINT STYLES                                      */
+/* ═══════════════════════════════════════════════════ */
+
+@media print {
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the specific section we're in */
+  main,
+  .group\/sheet,
+  .group\/sheet * {
+    visibility: visible !important;
+  }
+
+  /* Fix position for print */
+  main {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-top: 0 !important;
+  }
+
+  /* Remove backgrounds/colors restrictions some browsers have */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide non-essential layout pieces */
+  nav,
+  .sticky,
+  aside,
+  button,
+  .ai-bots {
+    display: none !important;
+  }
+
+  /* Force A4 page size */
+  @page {
+    size: A4;
+    margin: 0;
   }
 }

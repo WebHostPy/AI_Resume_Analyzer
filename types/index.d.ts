@@ -8,6 +8,7 @@ interface Resume {
 }
 
 interface Feedback {
+    extractedData?: any;
     overallScore: number;
     ATS: {
         score: number;
